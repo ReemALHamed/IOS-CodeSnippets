@@ -1,5 +1,6 @@
 # IOS-CodeSnippets
 Here u can find some useful ios snipptes to save u some time :)
+check [here](https://stackoverflow.com/questions/52417561/how-to-add-remove-custom-code-snippets-in-xcode-11-and-above) to see how to add a code snippet to your xcode
 
 ## Alert with Text Field
 ```
