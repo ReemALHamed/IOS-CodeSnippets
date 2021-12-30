@@ -176,7 +176,7 @@ let picker = UIImagePickerController()
 ```
 #### extension
 ```
-extension ……: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension yourViewControllerName : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
     
         guard let userPickedImage = info[.originalImage] as? UIImage else { return }
