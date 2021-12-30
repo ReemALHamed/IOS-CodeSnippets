@@ -1,6 +1,6 @@
 # IOS-CodeSnippets
 Here u can find some useful ios snipptes to save u some time :)
-check [here](https://stackoverflow.com/questions/52417561/how-to-add-remove-custom-code-snippets-in-xcode-11-and-above) to see how to add a code snippet to your xcode
+check [here](https://www.youtube.com/watch?v=ixlLgEgPnRk) to see how to add a code snippet to your xcode
 
 ## Alert with Text Field
 ```
@@ -154,7 +154,7 @@ func fetchingData() {
     }
 
 ```
-#### 3) Delete an onject from the CoreData
+#### 3) Delete an object from the CoreData
 ```
         context.delete(itemsList[the index of the desired item])
         save()
@@ -185,6 +185,24 @@ extension yourViewControllerName : UIImagePickerControllerDelegate, UINavigation
         
     }
 }
+
+```
+## Delete from API
+```
+static func deleteTaskWithObjective(id: String, completionHandler: @escaping(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void) {
+
+        // Create the url to request
+        if let urlToReq = URL(string: "http://127.0.0.1:8080/tasks/\(id)") {
+        
+            // Create an NSMutableURLRequest using the url. This Mutable Request will allow us to modify the headers.
+            var request = URLRequest(url: urlToReq)
+            request.httpMethod = "DELETE"// Set the method to DELETE
+           
+            let session = URLSession.shared // Create the session
+            let task = session.dataTask(with: request as URLRequest, completionHandler: completionHandler)
+            task.resume()
+        }
+    }
 
 ```
 # Credit 
