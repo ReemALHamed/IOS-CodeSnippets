@@ -105,6 +105,88 @@ class Model{
         })
     }
 ```
+## Core Data 
+after setting up ur core data these snipptes will help in managing it
 
+#### vars
+```
+//array to hold all created objects of the CoreData Entity
+var itemsList = [NameOfCoreDataEntity]
+
+//needed objects
+let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+let save = (UIApplication.shared.delegate as! AppDelegate).saveContext
+]()
+```
+#### func
+#### 1) fetching data
+```
+func fetchingData() {
+        let result: NSFetchRequest<Sports> = NameOfCoreDataEntity.fetchRequest()
+        do {
+            itemsList = try context.fetch(result)
+        }catch {
+            print(error)
+        }
+        // you can reload the data of ur table/collectionView in here
+    }
+
+```
+#### 2) Add new object to the CoreData
+*Note: you don't need to use the alert dialog, but it would be an easier choice for data entry *
+```
+        let alert = UIAlertController(title: "Add New object", message: "please fill in the fields", preferredStyle: .alert)
+        alert.addTextField { textField in
+            textField.placeholder = "Enter your Name"
+        }
+        alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { _ in
+            let name = alert.textFields![0].text!
+            if name.isEmpty {
+                return
+            }
+            let newObject = NameOfCoreDataEntity(context: self.context)
+            newObject.name = name
+            self.save()
+            self.fetchingData()
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: .none))
+        present(alert, animated: true)
+    }
+
+```
+#### 3) Delete an onject from the CoreData
+```
+        context.delete(itemsList[the index of the desired item])
+        save()
+        fetchingData()
+
+```
+## Image Picker
+#### vars
+```
+// variable
+var imageView = UIImageView()
+
+//Picker calling variable
+let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.sourceType = .photoLibrary
+        present(picker, animated: true)
+
+```
+#### extension
+```
+extension ……: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    
+        guard let userPickedImage = info[.originalImage] as? UIImage else { return }
+        imageView.image = userPickedImage
+        picker.dismiss(animated: true, completion: nil)
+        
+    }
+}
+
+```
 # Credit 
-thanks to the Marvlous [SAFA Falaqi](https://github.com/safafalaqi) for this amazing idea :)
+Thanks to the Marvlous [SAFA Falaqi](https://github.com/safafalaqi) for this brilliant idea :)
+And huge thanks to [Mohammed Jaha](https://github.com/MiroJaha) for the amazing code snipptes !
