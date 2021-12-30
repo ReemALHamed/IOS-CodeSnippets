@@ -231,6 +231,8 @@ https://stackoverflow.com/questions/24231680/loading-downloading-image-from-url-
 
 ```
 @IBOutlet weak var imageView: UIImageView!
+
+//download the image from the link
 imageView.downloaded(from:"https://developer.apple.com/swift/images/swift-og.png")
 
 
