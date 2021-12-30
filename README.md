@@ -205,6 +205,26 @@ static func deleteTaskWithObjective(id: String, completionHandler: @escaping(_ d
     }
 
 ```
+## Date Format
+```
+let calendar = Calendar.current
+let today = calendar.startOfDay(for: Date())
+//pass the string format 
+print(today.toString(format: "EEEE, MMM d, yyyy"))
+
+extension Date {
+
+    func toString(format: String) -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.dateFormat = format
+        return formatter.string(from: self)
+    }
+    
+}
+```
+
+
 # Credit 
 Thanks to the Marvlous [SAFA Falaqi](https://github.com/safafalaqi) for this brilliant idea :)
 And huge thanks to [Mohammed Jaha](https://github.com/MiroJaha) for the amazing code snipptes !
