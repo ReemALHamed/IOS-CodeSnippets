@@ -265,7 +265,7 @@ extension UIImageView {
 ```
 
 
-## Audio Player with observer to update the slider 
+## Audio Player with Observer to Update the Slider 
 
 
 #### vars
