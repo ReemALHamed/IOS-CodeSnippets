@@ -116,13 +116,13 @@ var itemsList = [NameOfCoreDataEntity]()
 //needed objects
 let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 let save = (UIApplication.shared.delegate as! AppDelegate).saveContext
-]()
+
 ```
 #### func
 #### 1) fetching data
 ```
 func fetchingData() {
-        let result: NSFetchRequest<Sports> = NameOfCoreDataEntity.fetchRequest()
+        let result: NSFetchRequest<NameOfCoreDataEntity> = NameOfCoreDataEntity.fetchRequest()
         do {
             itemsList = try context.fetch(result)
         }catch {
