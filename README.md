@@ -207,13 +207,16 @@ static func deleteTaskWithObjective(id: String, completionHandler: @escaping(_ d
 ```
 ## Date Format
 
-
+#### vars
 ```
 let calendar = Calendar.current
 let today = calendar.startOfDay(for: Date())
 //pass the string format 
 print(today.toString(format: "EEEE, MMM d, yyyy"))
 
+```
+#### extension
+```
 extension Date {
 
     func toString(format: String) -> String {
@@ -229,13 +232,16 @@ extension Date {
 ## Downloading Image from URL 
 https://stackoverflow.com/questions/24231680/loading-downloading-image-from-url-on-swift
 
+#### vars
 ```
 @IBOutlet weak var imageView: UIImageView!
 
 //download the image from the link
 imageView.downloaded(from:"https://developer.apple.com/swift/images/swift-og.png")
 
-
+```
+#### extension
+```
 extension UIImageView {
     func downloaded(from url: URL, contentMode mode: ContentMode = .scaleToFill) {
         contentMode = mode
@@ -256,6 +262,45 @@ extension UIImageView {
         downloaded(from: url, contentMode: mode)
     }
 }
+```
+
+
+## Audio Player with observer to update the slider 
+
+
+#### vars
+```
+   var player:AVPlayer?
+   @IBOutlet weak var audioSlider: UISlider!
+
+```
+#### func
+```
+ override func viewDidLoad() {
+            super.viewDidLoad()
+            
+        // to play a music from url
+        let url = URL(string: "https://mp3soundstream.com/wp-content/uploads/2020/09/Flute-Of-Joy-60.mp3")
+                let playerItem:AVPlayerItem = AVPlayerItem(url: url!)
+                player = AVPlayer(playerItem: playerItem)
+        
+        let duration : CMTime = playerItem.asset.duration
+        let seconds : Float64 = CMTimeGetSeconds(duration) 
+        
+        //assign the duration length of the music to the slider 
+        audioSlider.minimumValue = 0
+        audioSlider.maximumValue = Float(seconds)
+        audioSlider.isContinuous = true
+
+
+        //observer to update the slider when the music is playing 
+            player!.addPeriodicTimeObserver(forInterval: CMTimeMakeWithSeconds(1, preferredTimescale: 1), queue: DispatchQueue.main) { (CMTime) -> Void in
+                 if self.player!.currentItem?.status == .readyToPlay {
+                     let time : Float64 = CMTimeGetSeconds(self.player!.currentTime())
+                     self.audioSlider!.value = Float ( time )
+                 }
+             }
+        }
 ```
 
 
