@@ -111,7 +111,7 @@ after setting up ur core data these snipptes will help in managing it
 #### vars
 ```
 //array to hold all created objects of the CoreData Entity
-var itemsList = [NameOfCoreDataEntity]
+var itemsList = [NameOfCoreDataEntity]()
 
 //needed objects
 let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
